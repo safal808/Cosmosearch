@@ -1,0 +1,18 @@
+[
+    {
+     "url": "https://example1.com",
+     "ranking": 1,
+     "quality": "High",
+     "keywords": ["technology", "programming", "development"],
+     "description": "A tech blog providing insights into programming and development.",
+     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+     "url": "https://example2.com",
+     "ranking": 2,
+     "quality": "Medium",
+     "keywords": ["gardening", "organic", "plants"],
+     "description": "Your go-to guide for organic gardening and plant care.",
+     "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris..."
+    }
+   ]

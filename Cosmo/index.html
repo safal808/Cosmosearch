@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine</title>
+</head>
+
+<body>
+    <h1>Search Engine</h1>
+    <form id="searchForm">
+        <label for="searchQuery">Enter a word to search:</label>
+        <input type="text" id="searchQuery" name="searchQuery">
+        <button type="submit">Search</button>
+    </form>
+    <div id="searchResults">
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var searchQuery = document.getElementById('searchQuery').value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/search?word=' + encodeURIComponent(searchQuery), true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var results = JSON.parse(xhr.responseText);
+                        displayResults(results);
+                    } else {
+                        displayError('Error occurred while searching.');
+                    }
+                }
+            };
+            xhr.send();
+        });
+
+        function displayResults(results) {
+            var searchResultsDiv = document.getElementById('searchResults');
+            searchResultsDiv.innerHTML = '';
+
+            if (results.length === 0) {
+                searchResultsDiv.innerHTML = '<p>No results found.</p>';
+            } else {
+                var resultList = '<ul>';
+                results.forEach(function (result) {
+                    resultList += '<li>' + result.Title + ' (' + result.Url + ')</li>';
+                });
+                resultList += '</ul>';
+                searchResultsDiv.innerHTML = resultList;
+            }
+        }
+
+        function displayError(message) {
+            var searchResultsDiv = document.getElementById('searchResults');
+            searchResultsDiv.innerHTML = '<p>' + message + '</p>';
+        }
+    </script>
+</body>
+
+</html>
