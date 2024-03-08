@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gv0skQxUkTlukQzqgTyQ6Isonxs1WeCAFKqkrUi5sQ7CyiLmhaNqP9lfkrEMCDbTKOYj8W6d4rRZImRdU4E58g==",
+  "dgSpecHash": "F7OhQ3Dq73w/yVhEIsZIuo3F775Mo0+KdE8+e0Y7WNFEx5iDN0dkyEqixcBoMXopeTzoqHChtOr1CGsB2jzDoQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dell\\Desktop\\Cosmosearch\\Cosmo\\Cosmo.csproj",
+  "projectFilePath": "C:\\Users\\dell\\Desktop\\Cosmosearch\\Cosmo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dell\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
