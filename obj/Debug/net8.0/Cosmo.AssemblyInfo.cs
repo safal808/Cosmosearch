@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cosmo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92415cb7aa147c798240abe3123f668ca82ac041")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11c18f398a3cfe1d600adedaad1213f77d2b9dfe")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cosmo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cosmo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

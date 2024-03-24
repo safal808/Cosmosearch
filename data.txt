@@ -1,42 +1,38 @@
 *PAGE:https://www.facebook.com/vushi13
-Vishnu Neupane - Facebook
-*DESC:
 Vishnu Neupane
-VN
-vushi13
-c# teacher
-best teacher 
+*DESC:
+Vishnu Neupane - Computer Engineering Teacher | Kalika Manavgyan Secondary School | Butwal, Nepal
+c# teacher best teacher vishnu neupane vushi13 
 *PAGE:https://www.facebook.com/arbindIT
 Arbind Dubey
 *DESC:
-dubey sir
-incharge
+dubey sir incharge
 *PAGE:https://kalikaschoolbtl.edu.np/
 Kalika School
 *DESC:
-kmgss
-kalikaschoolbtl
-kalika 
+Kalika Manavgyan Secondary School is located in Butwal Sub-metropolitan City, Ward No. 10, Kalikanagar (Sector-1) and Ramnagar (Sector-2), Rupandehi, Lumbini.
+kalikaschoolbtl kalika 
 *PAGE:https://github.com/
 GitHub
 *DESC:
+GitHub- Collaborate and Share Code 
 git
 hub
 *PAGE:https://www.youtube.com/
 YouTube
 *DESC:
-
+Waste your time watching videos or study
 videos
 *PAGE:https://www.google.com/
 Google
 *DESC:
-google
-search
+We just search here
+search google searchengine engine
 *PAGE:https://www.facebook.com/
 Facebook
 *DESC:
-facebook
-social media
+Social Media Platform by Zuck
+social media facebook
 *PAGE:https://www.instagram.com/
 Instagram
 *DESC:
@@ -55,24 +51,36 @@ social media
 *PAGE:https://www.pinterest.com/
 Pinterest
 *DESC:
-pinterest
-social media
+Pinterest
+social media 
 *PAGE:https://www.safal-poudel.com.np
 Safal Poudel
 *DESC:
+Safal Poudel - Computer Engineering Student | Kalika Manavgyan Secondary School | Butwal, Nepal
 safal poudel
-safal
+*PAGE:https://safalpoudel.me/
+Safal Poudel
+*DESC:
+Safal Poudel - Roll no 34
+safal poudel
+
 *PAGE:https://kcshakti.com.np
 Shakti KC 
 *DESC:
-shakti kc
-shakti
-shakti dada
+Shakti KC
+shakti shakti dada
 *PAGE:https://www.facebook.com/Surajinfinite
 Suraj Pandey
 *DESC:
-suraj pandey
-suraj
-SP
-physics sir
-vishnu sir bestfriend
+Physics Sir 
+suraj SP physics sir bestfriend
+*PAGE:https://sailendrashrestha.com.np/
+Sailendra Shrestha
+*DESC:
+Sailendra Shrestha - Roll no 35
+sailu sailendra vai shrestha 
+*PAGE:https://nxrmal.com
+Nirmal Ghimire 
+*DESC:
+Nirmal Ghimire - Roll no 24
+nxrmal nirmal ghimire

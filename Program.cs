@@ -1,170 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Engine</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            margin-left: 20px;
-            background-color: #f4f4f4;
+namespace SearchEngineApp
+{
+    public class SearchData
+    {
+        public string Word { get; set; }
+        public string Title { get; set; }
+        public string Url { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class SearchEngine
+    {
+        private List<SearchData> _searchContent;
+
+        public SearchEngine(string filePath)
+        {
+            _searchContent = new List<SearchData>();
+            ParseDataStructure(filePath);
         }
 
-        h1 {
-            margin-top: 20px;
-        }
+        private void ParseDataStructure(string path)
+        {
+            string page = null;
+            string title = null;
+            string description = null;
 
-        #searchForm {
-            margin-top: 20px;
-        }
+            foreach (var line in File.ReadLines(path))
+            {
+                SearchData searchData = new SearchData();
 
-        input[type="text"] {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 300px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        button {
-            padding: 8px 15px;
-            border-radius: 5px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #searchResultsContainer {
-            display: none;
-            margin-top: 20px;
-            width: 85%;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .searchItem {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-            margin-left: 20px;
-            margin-bottom: 10px;
-        }
-
-        .searchItem a {
-            text-decoration: none;
-            color: #1a0dab;
-            font-size: 14px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .searchItem a:hover {
-            text-decoration: underline;
-        }
-
-        .searchItem h2 {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-
-        .searchItem p {
-            font-size: 14px;
-            margin: 5px 0;
-            color: #545454;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>Cosmo Search</h1>
-    <form id="searchForm">
-        <input type="text" id="searchQuery" name="searchQuery" placeholder="Enter your search query..." />
-        <button type="submit">Search</button>
-    </form>
-    <div id="searchResultsContainer">
-        <div id="searchResults">
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            var searchQuery = document.getElementById('searchQuery').value;
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/search?word=' + encodeURIComponent(searchQuery), true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var results = JSON.parse(xhr.responseText);
-                        displayResults(results);
-                    } else {
-                        displayError('Error occurred while searching.');
-                    }
+                if (line.StartsWith("*PAGE:"))
+                {
+                    page = line.Substring(6);
+                    title = null;
+                    description = null;
                 }
-            };
-            xhr.send();
-        });
+                else if (title == null)
+                {
+                    title = line.Trim();
+                }
+                else if (description == null)
+                {
+                    description = line.Trim();
+                }
+                else
+                {
+                    searchData.Url = page;
+                    searchData.Title = title;
+                    searchData.Description = description;
+                    searchData.Word = line.Trim();
 
-        function displayResults(results) {
-            var searchResultsDiv = document.getElementById('searchResults');
-            searchResultsDiv.innerHTML = '';
+                    _searchContent.Add(searchData);
 
-            var searchResultsContainer = document.getElementById('searchResultsContainer');
-            searchResultsContainer.style.display = 'block';
-
-            if (results.length === 0) {
-                searchResultsDiv.innerHTML = '<p>No results found.</p>';
-            } else {
-                results.forEach(function (result) {
-                    var searchItem = document.createElement('div');
-                    searchItem.classList.add('searchItem');
-
-                    var link = document.createElement('a');
-                    link.href = result.Url;
-                    link.textContent = result.Url;
-                    link.target = "_blank"; // Open link in new tab
-                    searchItem.appendChild(link);
-
-                    var titleLink = document.createElement('a');
-                    titleLink.href = result.Url;
-                    titleLink.textContent = result.Title;
-                    titleLink.style.fontSize = '18px'; // Larger font size for title
-                    titleLink.style.color = '#333'; // Darker color for title
-                    var title = document.createElement('h2');
-                    title.appendChild(titleLink);
-                    searchItem.appendChild(title);
-
-                    var description = document.createElement('p');
-                    description.textContent = result.Description;
-                    searchItem.appendChild(description);
-
-                    searchResultsDiv.appendChild(searchItem);
-                });
+                    title = null;
+                    description = null;
+                }
             }
         }
 
-        function displayError(message) {
-            var searchResultsDiv = document.getElementById('searchResults');
-            searchResultsDiv.innerHTML = '<p>' + message + '</p>';
-
-            var searchResultsContainer = document.getElementById('searchResultsContainer');
-            searchResultsContainer.style.display = 'block';
+        public List<SearchData> FindWord(string word)
+        {
+            var results = _searchContent.Where(sd => sd.Word.Contains(word, StringComparison.OrdinalIgnoreCase)).ToList();
+            return results;
         }
-    </script>
-</body>
+    }
 
-</html>
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
+    }
+
+    public class Startup
+    {
+        public void Configure(IApplicationBuilder app)
+        {
+            app.Run(async (context) =>
+            {
+                if (context.Request.Path == "/search")
+                {
+                    string word = context.Request.Query["word"];
+                    string filePath = "./data.txt";
+                    var searchEngine = new SearchEngine(filePath);
+                    var results = searchEngine.FindWord(word);
+                    string json = JsonConvert.SerializeObject(results);
+                    context.Response.ContentType = "application/json";
+                    await context.Response.WriteAsync(json);
+                }
+                else
+                {
+                    context.Response.ContentType = "text/html";
+                    await context.Response.SendFileAsync("index.html");
+                }
+            });
+        }
+    }
+}
