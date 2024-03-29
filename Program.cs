@@ -43,6 +43,10 @@ namespace SearchEngineApp
                     title = null;
                     description = null;
                 }
+                else if (line.StartsWith("*DESC:"))
+                {
+                    description = line.Substring(6);
+                }
                 else if (title == null)
                 {
                     title = line.Trim();
@@ -65,6 +69,7 @@ namespace SearchEngineApp
                 }
             }
         }
+
 
         public List<SearchData> FindWord(string word)
         {
